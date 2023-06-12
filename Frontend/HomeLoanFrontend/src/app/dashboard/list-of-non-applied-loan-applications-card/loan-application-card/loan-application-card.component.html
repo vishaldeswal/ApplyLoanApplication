@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-content>
+    <div class="d-flex justify-content-between">
+      <div class="container">
+        <div class="row">
+          <div class="col-1 p-2">{{ index + 1 }}</div>
+          <div class="col-2 p-2">
+            {{ userLoanApplicationDetailsByAdvisor.emailId }}
+          </div>
+          <div class="col-4 p-2">
+            {{ userLoanApplicationDetailsByAdvisor.id }}
+          </div>
+          <div class="col-1 p-2">
+            <span class="badge rounded-pill " [ngStyle]="{backgroundColor:userLoanApplicationDetailsByAdvisor.eligibility}">{{userLoanApplicationDetailsByAdvisor.eligibility}}</span>
+          </div>
+          <div class="col-1 p-2">
+            {{ userLoanApplicationDetailsByAdvisor.status }}
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="d-flex justify-content-between">
+          <div class="p-2">
+            <button mat-raised-button color="basic" (click)="OnDetails()">
+              Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,38 @@
+<div class="add-country-content">
+    <h1>Edit State</h1>
+    <div class="form-content">
+        <form [formGroup]="stateForm" (ngSubmit)="onEdit()">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>State Id</mat-label>
+                <input matInput formControlName="id" placeholder="State id" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>State code</mat-label>
+                <input matInput formControlName="code" placeholder="State Code" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>State name</mat-label>
+                <input matInput formControlName="name" placeholder="State Name">
+                <mat-error *ngIf="stateForm.get('name')?.errors?.['required']">
+                    State Name is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country"
+                (selectionChange)="onCountry($event.value['code'])">
+                    <mat-option *ngFor="let country of availableCountries" [value]="country"
+                    >{{ country["name"]
+                        }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="stateForm.get('country')?.hasError('required')">
+                    Country is required</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!stateForm.valid">Edit</button>
+            <button mat-raised-button color="primary" (click)="insertBackAddState()">Cancel</button>
+            
+        </form>
+
+    </div>
+</div>

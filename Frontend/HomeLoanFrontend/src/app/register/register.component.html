@@ -1,0 +1,88 @@
+<img class="bg-img-container" src="assets/HomePageImage/homePageBG.jpg" alt="Background Image">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <mat-card class="p-3" style="background-color: aliceblue;">
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="assets/HomePageImage/registrationform.png" alt="Registration Image" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h1 class="text-center mb-4">User Registration</h1>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Email" formControlName="emailId" />
+                  <mat-error *ngIf="registerForm.get('emailId')?.hasError('required')">Email is required</mat-error>
+                  <mat-error *ngIf="registerForm.get('emailId')?.hasError('email')">Please enter a valid email</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" />
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Password is required</mat-error>
+                  <mat-error *ngIf="
+                  registerForm.get('password')?.hasError('minlength') ||
+                  registerForm.get('password')?.hasError('pattern')
+                  ">Password format is invalid</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Mobile Number" formControlName="mobileNumber" />
+                  <mat-error *ngIf="registerForm.get('mobileNumber')?.hasError('required')">Mobile number is
+                    required</mat-error>
+                    <mat-error *ngIf="registerForm.get('mobileNumber')?.hasError('maxlength')||registerForm.get('mobileNumber')?.hasError('minlength')||registerForm.get('mobileNumber')?.hasError('pattern')">Please enter a valid mobile number</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Country</mat-label>
+                  <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value['name'])">
+                    <mat-option *ngFor="let country of availableCountries" [value]="country">{{ country["name"]
+                      }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="registerForm.get('country')?.hasError('required')">Country is required</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>State</mat-label>
+                  <mat-select formControlName="state" (selectionChange)="onStateChange($event.value['name'])">
+                    <mat-option *ngFor="let state of availableStatesInCountry" [value]="state">
+                      {{ state["name"] }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="registerForm.get('state')?.hasError('required')">State is required</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>City</mat-label>
+                  <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of availableCityInState" [value]="city">
+                      {{ city["name"]}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="registerForm.get('city')?.hasError('required')">City is required</mat-error>
+                </mat-form-field>
+              </div>
+    
+              <div class="text-center">
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

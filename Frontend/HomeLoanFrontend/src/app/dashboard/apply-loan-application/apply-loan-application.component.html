@@ -1,0 +1,220 @@
+<div>
+  <header>
+    <h1 class="text-center mt-3 mb-3">Apply for loan</h1>
+  </header>
+  <div class="container">
+    <form
+      class="loan-form"
+      [formGroup]="applyLoanForm"
+      (ngSubmit)="submitLoanRequest()"
+    >
+      <mat-accordion multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Property Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="form-fields">
+            <mat-form-field appearance="outline">
+              <mat-label>Property Address</mat-label>
+              <input
+                matInput
+                formControlName="propertyAddress"
+                placeholder="Enter property address"
+              />
+              <mat-error *ngIf="propertyAddress?.errors?.['required']">
+                Property Address is required
+              </mat-error>
+              <mat-error *ngIf="propertyAddress?.errors?.['minlength']">
+                Property Address must be at least 5 characters long
+              </mat-error>
+              <mat-error *ngIf="propertyAddress?.errors?.['maxlength']">
+                Property Address cannot exceed 100 characters
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Property Size</mat-label>
+              <input
+                matInput
+                formControlName="propertySize"
+                placeholder="Enter property size"
+              />
+              <mat-error *ngIf="propertySize?.errors?.['required']">
+                Property Size is required
+              </mat-error>
+              <mat-error *ngIf="propertySize?.errors?.['min']">
+                Property Size must be at least 25
+              </mat-error>
+              <mat-error *ngIf="propertySize?.errors?.['max']">
+                Property Size cannot exceed 1000
+              </mat-error>
+              <mat-error *ngIf="propertySize?.errors?.['pattern']">
+                Property size can be numeric only
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Property Cost</mat-label>
+              <input
+                matInput
+                formControlName="propertyCost"
+                placeholder="Enter property cost"
+              />
+              <mat-error *ngIf="propertyCost?.errors?.['required']">
+                Property cost is required
+              </mat-error>
+              <mat-error *ngIf="propertyCost?.errors?.['multipleOf1000']">
+                Property cost must be multiple of 1000
+              </mat-error>
+              <mat-error *ngIf="propertyCost?.errors?.['min']">
+                Property cost must be at least 100000
+              </mat-error>
+              <mat-error *ngIf="propertyCost?.errors?.['max']">
+                Property cost cannot exceed 900000000
+              </mat-error>
+              <mat-error *ngIf="propertyCost?.errors?.['pattern']">
+                Property cost can be numeric only
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Property Registration Cost</mat-label>
+              <input
+                matInput
+                formControlName="registrationCost"
+                placeholder="Enter property registration cost"
+              />
+              <mat-error *ngIf="registrationCost?.errors?.['required']">
+                Registration cost is required
+              </mat-error>
+              <mat-error *ngIf="registrationCost?.errors?.['min']">
+                Registration cost must be at least 100000
+              </mat-error>
+              <mat-error *ngIf="registrationCost?.errors?.['max']">
+                Registration cost cannot exceed 10000000
+              </mat-error>
+              <mat-error *ngIf="registrationCost?.errors?.['pattern']">
+                Registration cost can be numeric only
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Personal Income Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="form-fields">
+            <mat-form-field appearance="outline">
+              <mat-label>Monthly Family Income</mat-label>
+              <input
+                matInput
+                formControlName="monthlyFamilyIncome"
+                placeholder="Enter monthly family income"
+              />
+              <mat-error *ngIf="monthlyFamilyIncome?.errors?.['required']">
+                Monthly family income is required
+              </mat-error>
+              <mat-error *ngIf="monthlyFamilyIncome?.errors?.['min']">
+                Monthly family income must be at least 1000
+              </mat-error>
+              <mat-error *ngIf="monthlyFamilyIncome?.errors?.['max']">
+                Monthly family income cannot exceed 10000000
+              </mat-error>
+              <mat-error *ngIf="monthlyFamilyIncome?.errors?.['pattern']">
+                Monthly family income can be numeric only
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Other Income</mat-label>
+              <input
+                matInput
+                formControlName="otherIncome"
+                placeholder="Enter other income"
+              />
+              <mat-error *ngIf="otherIncome?.errors?.['required']">
+                Other income is required
+              </mat-error>
+              <mat-error *ngIf="otherIncome?.errors?.['min']">
+                Other income must be at least 1000
+              </mat-error>
+              <mat-error *ngIf="otherIncome?.errors?.['max']">
+                Other income cannot exceed 10000000
+              </mat-error>
+              <mat-error *ngIf="otherIncome?.errors?.['pattern']">
+                Other income can be numeric only
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Loan Requirements</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="form-fields">
+            <mat-form-field appearance="outline">
+              <mat-label>Loan Amount</mat-label>
+              <input
+                matInput
+                formControlName="loanAmount"
+                placeholder="Enter loan amount"
+              />
+              <mat-error *ngIf="loanAmount?.errors?.['required']">
+                Loan amount is required
+              </mat-error>
+              <mat-error *ngIf="loanAmount?.errors?.['min']">
+                Loan amount must be at least 10000
+              </mat-error>
+              <mat-error *ngIf="loanAmount?.errors?.['max']">
+                Loan amount cannot exceed 990000000
+              </mat-error>
+              <mat-error *ngIf="loanAmount?.errors?.['pattern']">
+                Loan amount can be numeric only
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Loan Duration</mat-label>
+              <input
+                matInput
+                formControlName="loanDuration"
+                placeholder="Enter loan duration (in months)"
+              />
+              <mat-error *ngIf="loanDuration?.errors?.['required']">
+                Loan duration is required
+              </mat-error>
+              <mat-error *ngIf="loanDuration?.errors?.['min']">
+                Loan duration must be at least 12
+              </mat-error>
+              <mat-error *ngIf="loanDuration?.errors?.['max']">
+                Loan duration cannot exceed 240
+              </mat-error>
+              <mat-error *ngIf="loanDuration?.errors?.['pattern']">
+                Loan duration can be numeric only
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <button
+          class="mt-3"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!applyLoanForm.valid"
+        >
+          Submit
+        </button>
+        <button
+         class="mt-3"
+         mat-raised-button
+         color="warn"
+         type="button"
+         routerLink="/Dashboard">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

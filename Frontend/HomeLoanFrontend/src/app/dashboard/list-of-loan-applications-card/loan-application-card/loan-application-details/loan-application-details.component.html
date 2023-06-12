@@ -1,0 +1,204 @@
+<div *ngIf="CheckRole() == 0; else elseBlock">
+  <div class="main">
+    <div class="card-container">
+      <div mat-card>
+        <section class="mat-typography">
+          <h1 mat-card-title>LOAN DETAILS</h1>
+        </section>
+
+        <div mat-card-content>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">EMAIL ID:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.emailId }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">COST:</div>
+              <div class="value">{{ loanApplicationDetailsByUser.cost }}</div>
+            </div>
+            <!-- <div class="val-container">
+              <div class="title">ELIGIBLITY:</div>
+              <div class="value">XYZ1234</div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">ADDRESS:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.address }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">Loan AMOUNT:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.loanAmount }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">LOAN DURATION:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.loanDuration }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">LOAN START DATE:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.loanStartDate }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">MONTHLY INCOME:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.monthlyFamilyIncome }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">OTHER INCOME:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.otherIncome }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">REGISTRATION COST:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByUser.registrationCost }}
+              </div>
+            </div>
+            <!-- <div class="val-container">
+              <div class="title">SHARE :</div>
+              <div class="value">PYMB0001332</div>
+            </div> -->
+            <div class="val-container">
+              <div class="title">SIZE:</div>
+              <div class="value">{{ loanApplicationDetailsByUser.size }}</div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- <div class="val-container">
+              <div class="title">TYPE:</div>
+              <div class="value">PYMB0001332</div>
+            </div> -->
+            <!-- <div class="val-container">
+              <div class="title">VALUE:</div>
+              <div class="value">PYMB0001332</div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock
+  ><div class="main">
+    <div class="card-container">
+      <div mat-card>
+        <section class="mat-typography">
+          <h1 mat-card-title>LOAN DETAILS</h1>
+        </section>
+
+        <div mat-card-content>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">EMAIL ID:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.emailId }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">COST:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.cost }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">ELIGIBLITY:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.eligibility }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">ADDRESS:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.address }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">Loan AMOUNT:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.loanAmount }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">LOAN DURATION:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.loanDuration }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">LOAN START DATE:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.loanStartDate }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">MONTHLY INCOME:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.monthlyFamilyIncome }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">OTHER INCOME:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.otherIncome }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">REGISTRATION COST:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.registrationCost }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">SHARE :</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.share }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">SIZE:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.size }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="val-container">
+              <div class="title">TYPE:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.type }}
+              </div>
+            </div>
+            <div class="val-container">
+              <div class="title">VALUE:</div>
+              <div class="value">
+                {{ loanApplicationDetailsByAdvisor.value }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></ng-template
+>

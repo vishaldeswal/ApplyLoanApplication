@@ -1,0 +1,116 @@
+<div *ngIf="CheckRole() == 0; else elseBlock">
+  <nav
+    class="navbar navbar-expand-lg navbar-expand-xl navbar-expand-xxl bg-body-tertiary bg-dark sticky-top"
+    data-bs-theme="dark"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Welcome {{ emailId }}</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-underline me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="OpenApplication"
+              >Open applications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="ClosedApplication"
+              >Closed applications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onAddPromotion()">Add promotions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onEditCountryStateCity()">Edit country/state/city codes</a>
+          </li>
+        </ul>
+        <button
+          mat-stroked-button
+          color="warn"
+          class="d-flex me-auto mb-2 mb-lg-0"
+          (click)="OnUpdatePassword()"
+        >
+          Update Password
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          class="d-flex"
+          (click)="OnLogout()"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+<ng-template #elseBlock>
+  <nav
+    class="navbar navbar-expand-lg navbar-expand-xl navbar-expand-xxl bg-body-tertiary bg-dark sticky-top"
+    data-bs-theme="dark"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Welcome {{ emailId }}</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-underline me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="MyApplication">My applications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="ApplyLoanApplication"
+              >Create new application</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="create-collateral"
+              >Add collateral</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="ListOfCollaterals"
+              >My collaterals</a
+            >
+          </li>
+        </ul>
+        <button
+          mat-stroked-button
+          color="warn"
+          class="d-flex me-auto mb-2 mb-lg-0"
+          (click)="OnUpdatePassword()"
+        >
+          Update Password
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          class="d-flex"
+          (click)="OnLogout()"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+</ng-template>

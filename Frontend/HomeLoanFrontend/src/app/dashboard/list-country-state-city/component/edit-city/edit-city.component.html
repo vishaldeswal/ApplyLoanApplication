@@ -1,0 +1,49 @@
+<div class="add-country-content">
+    <h1>Edit City</h1>
+    <div class="form-content">
+        <form [formGroup]="cityForm" (ngSubmit)="onEdit()">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>City Id</mat-label>
+                <input matInput formControlName="id" placeholder="City ID" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>City code</mat-label>
+                <input matInput formControlName="code" placeholder="City Code" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>City name</mat-label>
+                <input matInput formControlName="name" placeholder="City Name">
+                <mat-error *ngIf="cityForm.get('name')?.errors?.['required']">
+                    City Name is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country"
+                (selectionChange)="onCountryChanges($event.value['name'])">
+                    <mat-option *ngFor="let country of availableCountries" [value]="country"
+                    >{{ country["name"]
+                        }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="cityForm.get('country')?.hasError('required')">
+                    Country is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state"
+                (selectionChange)="onStateChanges($event.value['code'])">
+                    <mat-option *ngFor="let state of availableStates" [value]="state"
+                    >{{ state["name"]
+                        }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="cityForm.get('country')?.hasError('required')">
+                    State is required</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!cityForm.valid">Update</button>
+            <button mat-raised-button (click)="insertBackAddCity()">Cancel</button>
+        </form>
+
+    </div>
+

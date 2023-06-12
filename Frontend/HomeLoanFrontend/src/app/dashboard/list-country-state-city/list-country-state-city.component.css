@@ -1,0 +1,26 @@
+.home-section {
+    position: relative;
+    padding: 50px;
+    height: 100%;
+  }
+
+  .card {
+    flex: 1;
+    transition: box-shadow 0.3s ease;
+    background-color:  rgba(256, 256, 256, 0.83); /* Adjust the opacity as needed */
+    padding: 20px;
+    margin: 0px;
+    border-radius: 8px;
+    background-color: antiquewhite;
+    
+   
+  }
+
+  .button-container button{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .table-card{
+    overflow:auto
+  }

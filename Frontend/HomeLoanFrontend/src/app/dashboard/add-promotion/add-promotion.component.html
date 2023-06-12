@@ -1,0 +1,89 @@
+<div class="promotion-section  d-flex justify-content-center">
+
+
+  <div class="bg-img-container">
+    <img class="bg-img" src="assets/HomePageImage/homePageBG.jpg" alt="Background Image">
+  </div>
+
+  <div class="container d-flex justify-content-center align-items-center h-100">
+
+    <div class="card-group">
+
+      
+      <div class="card">
+        <div class="row">
+          
+          <div class="col-md-6 mt-6">
+            <img src="assets\Promotions\offerImg.jpg" alt="LogInImage" class="card-img-top">
+          </div>
+          <div class="col-md-6">
+            <h1>Create Promotion</h1>
+            <p>Note:</p>
+            <div class="card">
+
+              <form [formGroup]="applyPromotionForm" (ngSubmit)="submitPromotionRequest()">
+          
+                <div class="form-field">
+              
+                  <mat-form-field class="mb-3 w-100">
+                    <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                    <mat-error *ngIf="applyPromotionForm.get('startDate')?.hasError('required')">
+                      Start Date is required
+                    </mat-error>
+                    <mat-error *ngIf="applyPromotionForm.get('startDate')?.hasError('dateRangeError')">
+                    Date should be in range of (currentDate) and (currentDate + 5 years). 
+                    </mat-error>
+                  </mat-form-field>
+              
+                  <mat-form-field class="mb-3 w-100">
+                    <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate" [min]="applyPromotionForm.get('startDate')?.value" />
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                    <mat-error *ngIf="applyPromotionForm.get('endDate')?.hasError('required')">
+                      End Date is required
+                    </mat-error>
+                  </mat-form-field>
+              
+                  <mat-form-field class="mb-3 w-100">
+                    <mat-label>Type Of Promotion</mat-label>
+                    <mat-select formControlName="type">
+                      <mat-option *ngFor="let type of promotionTypes" [value]="type">{{ type }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="applyPromotionForm.get('type')?.hasError('required')">
+                      Type is required
+                    </mat-error>
+                  </mat-form-field>
+              
+                  <mat-form-field class="mb-3 w-100">
+                    <input matInput placeholder="Message" formControlName="message">
+                    <mat-error *ngIf="applyPromotionForm.get('message')?.hasError('required')">
+                      Message is required
+                    </mat-error>
+                  </mat-form-field>
+              
+                </div>
+              
+                <button mat-raised-button color="primary" type="submit" [disabled]="applyPromotionForm.invalid">Submit</button>
+              
+              </form>
+            </div>
+      
+            
+  
+
+    </div>
+   
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,85 @@
+<mat-card *ngIf="checkRole() == 0; else elseBlock">
+  <mat-card-content>
+    <div class="d-flex justify-content-between">
+      <div class="container">
+        <div class="row">
+          <div class="col-1 p-2">{{ index + 1 }}</div>
+          <div class="col-4 p-2">{{ userLoanApplicationDetailsByUser.id }}</div>
+          <div class="col-1 p-2">
+            {{ userLoanApplicationDetailsByUser.loanAmount }}
+          </div>
+          <div class="col-1 p-2">
+            {{ userLoanApplicationDetailsByUser.status }}
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="d-flex justify-content-between">
+          <div class="p-2">
+            <button   class="btn btn-outline-success" (click)="OnDetails()">
+              Details
+            </button>
+          </div>
+          <div class="d-flex justify-content-between" *ngIf="applicationStatus === 'Created'">
+            <div class="p-2">
+              <button mat-raised-button color="primary" (click)="onEdit()">Edit</button>
+            </div>
+            <div class="p-2">
+              <button mat-raised-button color="accent" (click)="openCollateralDialog()" [disabled]="
+                  userLoanApplicationDetailsByUser.status !== 'Created'
+                ">
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<ng-template #elseBlock>
+  <mat-card>
+    <mat-card-content>
+      <div class="d-flex justify-content-between">
+        <div class="container">
+          <div class="row">
+            <div class="col-1 p-2">{{ index + 1 }}</div>
+            <div class="col-2 p-2">
+              {{ userLoanApplicationDetailsByAdvisor.emailId }}
+            </div>
+            <div class="col-4 p-2">
+              {{ userLoanApplicationDetailsByAdvisor.id }}
+            </div>
+            <div class="col-1 p-2">
+              <span class="badge rounded-pill " [ngStyle]="{backgroundColor:userLoanApplicationDetailsByAdvisor.eligibility}">{{userLoanApplicationDetailsByAdvisor.eligibility}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="d-flex justify-content-between">
+            <div class="p-2">
+              <button mat-raised-button color="basic" (click)="OnDetails()">
+                Details
+              </button>
+            </div>
+            <div class="p-2">
+              <button mat-raised-button color="primary" (click)="OnAccept()">
+                Accept
+              </button>
+            </div>
+            <div class="p-2">
+              <button mat-raised-button color="primary" (click)="OnRecommend()">
+                Recommend
+              </button>
+            </div>
+            <div class="p-2">
+              <button mat-raised-button color="accent" (click)="OnReject()">
+                Reject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

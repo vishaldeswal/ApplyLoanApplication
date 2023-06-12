@@ -1,0 +1,43 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AddCityComponent } from './add-city.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+describe('AddCityComponent', () => {
+  let component: AddCityComponent;
+  let fixture: ComponentFixture<AddCityComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [AddCityComponent],
+      imports: [
+        MatButtonModule,
+        MatCardModule,
+        MatDividerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatSelectModule,
+        BrowserAnimationsModule
+      ]
+    });
+    fixture = TestBed.createComponent(AddCityComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

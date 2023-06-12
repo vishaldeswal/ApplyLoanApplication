@@ -1,0 +1,27 @@
+<div class="edit-country-content">
+    <h1>Edit Country</h1>
+    <div class="form-content">
+        <form [formGroup]="countryForm" (ngSubmit)="onAdd()">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country Id</mat-label>
+                <input matInput formControlName="id" placeholder="Country id" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country code</mat-label>
+                <input matInput formControlName="code" placeholder="Country Code" readonly class="readonly-input">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country name</mat-label>
+                <input matInput formControlName="name" placeholder="Country Name">
+                <mat-error *ngIf="countryForm.get('name')?.errors?.['required']">
+                    Country Name is required
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button
+            color="primary" type="submit" [disabled]="!countryForm.valid">Edit</button>
+            <button mat-raised-button (click)="insertBackAddCountry()"
+            color="primary">Cancel</button>
+        </form>
+       
+    </div>
+</div>

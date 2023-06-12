@@ -1,0 +1,232 @@
+<div class="home-section d-flex justify-content-center">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">Country</h1>
+                            <div class="card-content  table-card">
+                                <table class="table table-bordered" *ngIf="isCountryAvailable(); else noCountryElseBlock" >
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let country of availableCountries">
+                                            <td>{{country.code}}</td>
+                                            <td>{{country.name}}</td>
+                                            <td>
+                                                <div class="button-container">
+                                                    <button mat-raised-button color="primary"
+                                                        (click)="onEditCountry(country)">
+                                                        Edit
+                                                    </button>
+                                                    <button mat-raised-button color="warn" (click)="onRemoveCountry(country.id)">
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ng-template #noCountryElseBlock>
+                                   <p>No countries available right now !</p>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="add-country" *ngIf="showAddCountry; else else1Block">
+                                <app-add-country [availableCountries]="availableCountries" (reloadComponent)="reloadComponent()"></app-add-country>
+                            </div>
+
+                            <ng-template #else1Block>
+                                <app-edit-country [country]="editCountry"
+                                    (showAddCountry)="changeShowAddCountry($event)" ></app-edit-country>
+                            </ng-template>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="card-title">States</h1>
+                                    <div class="col-md-6">
+                                        <form [formGroup]="stateForm" (ngSubmit)="onShowStates()">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Country</mat-label>
+                                                <mat-select formControlName="countryName"
+                                                    (selectionChange)="onCountryChangeForState($event.value['name'])">
+                                                    <mat-option *ngFor="let country of availableCountries"
+                                                        [value]="country">{{ country["name"] }}</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="stateForm.get('countryName')?.hasError('required')">
+                                                    Country is required</mat-error>
+                                            </mat-form-field>
+                                            <button mat-raised-button color="primary" type="submit"
+                                            [disabled]="!stateForm.valid">Show States</button>
+                                        </form>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card-content table-card">
+                                    <table class="table table-bordered " *ngIf="isStatesAvailable(); else noStateElseBlock">
+                                        <thead>
+                                            <tr  class="text-center">
+                                                <th>Code</th>
+                                                <th>Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let state of availableStates">
+                                                <td>{{state.code}}</td>
+                                                <td>{{state.name}}</td>
+                                                <td>
+                                                    <div class="button-container">
+                                                        <button mat-raised-button color="primary"
+                                                            (click)="onEditState(state)">
+                                                            Edit
+                                                        </button>
+                                                        <button mat-raised-button color="warn" (click)="onRemoveState(state.id)">
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <ng-template #noStateElseBlock>
+                                        <p>No states available in selected country right now !</p>
+                                     </ng-template>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="add-state" *ngIf="showAddState; else else2Block">
+                                <app-add-state [availableStates]="availableStates" [availableCountries]="availableCountries" (reloadComponent)="reloadComponent()"></app-add-state>
+                            </div>
+
+                            <ng-template #else2Block>
+                                <app-edit-state [state]="editState" [availableCountries]="availableCountries"
+                               (showAddState)="changeShowAddState($event)" (reloadComponent)="reloadComponent()"></app-edit-state>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="card-title">Cities</h1>
+                                    <div class="col-md-6">
+                                        <form [formGroup]="cityForm" (ngSubmit)="onShowCities()">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Country</mat-label>
+                                                <mat-select formControlName="countryName"
+                                                    (selectionChange)="onCountryChangeCity($event.value['name'])">
+                                                    <mat-option *ngFor="let country of availableCountries"
+                                                        [value]="country">{{ country["name"] }}</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="cityForm.get('countryName')?.hasError('required')">
+                                                    Country is required</mat-error>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>State</mat-label>
+                                                <mat-select formControlName="stateName"
+                                                    (selectionChange)="onStateChangeCity($event.value['name'])">
+                                                    <mat-option *ngFor="let state of availableStatesForCity"
+                                                        [value]="state">{{ state["name"] }}</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="cityForm.get('stateName')?.hasError('required')">
+                                                    State is required</mat-error>
+                                            </mat-form-field>
+                                            <button mat-raised-button color="primary" type="submit"
+                                                [disabled]="!cityForm.valid">Show Cities</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card-content table-card">
+                                    <table class="table table-bordered" *ngIf="isCitiesAvailable(); else noCityElseBlock">
+                                        <thead>
+                                            <tr  class="text-center">
+                                                <th>Code</th>
+                                                <th>Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let city of availableCities">
+                                                <td>{{city.code}}</td>
+                                                <td>{{city.name}}</td>
+                                                <td>
+                                                    <div class="button-container">
+                                                        <button mat-raised-button color="primary"
+                                                            (click)="onEditCity(city)">
+                                                            Edit
+                                                        </button>
+                                                        <button mat-raised-button color="warn" (click)="onRemoveCity(city.id)">
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <ng-template #noCityElseBlock>
+                                        <p>No cities available in selected state, right now !</p>
+                                     </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="add-state" *ngIf="showAddCity; else else3Block">
+                                <app-add-city [availableStates]="availableStatesForCity" [availableCountries]="availableCountries" (stateOfNewCountry)="updateAvailableStateForCity($event)" (reloadComponent)="reloadComponent()"></app-add-city>
+                            </div>
+
+                            <ng-template #else3Block>
+                                <app-edit-city [city]="editCity" [availableCountries]="availableCountries" [availableStates]="availableStatesForCity" (stateOfNewCountry)="updateAvailableStateForCity($event)" 
+                               (showAddCity)="changeShowAddCity($event)"  (reloadComponent)="reloadComponent()"></app-edit-city>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
